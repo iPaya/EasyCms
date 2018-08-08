@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Less Files" pattern="file[EasyCms]:||file[EasyCms]:src/App/Modules/Admin/Assets/assets/less/*" />
+</component>
