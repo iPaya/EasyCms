@@ -17,7 +17,8 @@ class AdminAsset extends AssetBundle
         'css/admin.css'
     ];
     public $depends = [
-        'iPaya\Bootstrap\BootstrapAsset'
+        'iPaya\Bootstrap\BootstrapAsset',
+        'yii\web\YiiAsset'
     ];
     public $publishOptions = [
         'forceCopy' => YII_DEBUG,

@@ -8,16 +8,17 @@
 
 namespace App\Modules\Admin\Modules\System\Controllers;
 
-use App\Models\Manager;
+use App\Models\Dict;
+use App\Models\DictItem;
 use App\Modules\Admin\Controller;
-use App\Modules\Admin\Modules\System\Models\ManagerSearch;
+use App\Modules\Admin\Modules\System\Models\DictSearch;
 use Yii;
 use yii\web\NotFoundHttpException;
 
 /**
- * ManagerController implements the CRUD actions for Manager model.
+ * DictController implements the CRUD actions for Dict model.
  */
-class ManagerController extends Controller
+class DictController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +31,12 @@ class ManagerController extends Controller
     }
 
     /**
-     * Lists all Manager models.
+     * Lists all Dict models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ManagerSearch();
+        $searchModel = new DictSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,26 +46,41 @@ class ManagerController extends Controller
     }
 
     /**
-     * Displays a single Manager model.
+     * Displays a single Dict model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $items = $model->getItems()->orderBy(['sortNo'=>SORT_ASC])->all();
+
+        $itemModel = new DictItem([
+            'dictId' => $model->id,
+            'sortNo'=>0,
+        ]);
+
+        if ($itemModel->load(Yii::$app->request->post()) && $itemModel->save()) {
+            dict_manager()->clean();
+            return $this->refresh();
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'itemModel' => $itemModel,
+            'items' => $items,
         ]);
     }
 
     /**
-     * Creates a new Manager model.
+     * Creates a new Dict model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Manager();
+        $model = new Dict();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +92,7 @@ class ManagerController extends Controller
     }
 
     /**
-     * Updates an existing Manager model.
+     * Updates an existing Dict model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +112,7 @@ class ManagerController extends Controller
     }
 
     /**
-     * Deletes an existing Manager model.
+     * Deletes an existing Dict model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +126,15 @@ class ManagerController extends Controller
     }
 
     /**
-     * Finds the Manager model based on its primary key value.
+     * Finds the Dict model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Manager the loaded model
+     * @return Dict the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Manager::findOne($id)) !== null) {
+        if (($model = Dict::findOne($id)) !== null) {
             return $model;
         }
 

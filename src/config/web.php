@@ -24,6 +24,15 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+    ],
+    'container' => [
+        'definitions' => [
+            'yii\widgets\ActiveField' => [
+                'hintOptions' => [
+                    'class' => 'form-text text-muted'
+                ]
+            ]
+        ]
     ]
 ];
 

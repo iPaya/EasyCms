@@ -11,12 +11,12 @@ namespace App\Modules\Admin\Modules\System\Models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use App\Models\Manager;
+use App\Models\Dict;
 
 /**
- * ManagerSearch represents the model behind the search form of `App\Models\Manager`.
+ * DictSearch represents the model behind the search form of `App\Models\Dict`.
  */
-class ManagerSearch extends Manager
+class DictSearch extends Dict
 {
     /**
      * {@inheritdoc}
@@ -25,7 +25,7 @@ class ManagerSearch extends Manager
     {
         return [
             [['id', 'createdAt', 'updatedAt'], 'integer'],
-            [['name', 'email'], 'safe'],
+            [['code', 'name'], 'safe'],
         ];
     }
 
@@ -47,7 +47,7 @@ class ManagerSearch extends Manager
      */
     public function search($params)
     {
-        $query = Manager::find();
+        $query = Dict::find();
 
         // add conditions that should always apply here
 
@@ -70,8 +70,8 @@ class ManagerSearch extends Manager
             'updatedAt' => $this->updatedAt,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'email', $this->email]);
+        $query->andFilterWhere(['like', 'code', $this->code])
+            ->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

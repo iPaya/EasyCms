@@ -15,10 +15,7 @@ class Module extends \EasyCms\Module
     public function getNav(): array
     {
         return [
-            ['label' => '系统管理', 'items' => [
-                ['label' => '管理员管理', 'url' => module_url($this, ['system/manager/index'])],
-                ['label' => '字典管理', 'url' => module_url($this, ['system/dict/index'])],
-            ]],
+            ['label' => '系统管理', 'url' => module_url($this, ['system/manager/index']), 'active' => ('system' == current_module()->id)],
         ];
     }
 
@@ -31,15 +28,15 @@ class Module extends \EasyCms\Module
     {
         parent::init();
         $this->setModules([
-            'system'=>[
-                'class'=>'App\Modules\Admin\Modules\System\Module',
+            'system' => [
+                'class' => 'App\Modules\Admin\Modules\System\Module',
             ]
         ]);
-        \Yii::$app->set('user',[
-            'class'=>'yii\web\User',
-            'identityClass'=>'App\Models\Manager',
-            'idParam'=>'adminId',
-            'loginUrl'=>['/'.getenv('ADMIN_MODULE').'/default/login']
+        \Yii::$app->set('user', [
+            'class' => 'yii\web\User',
+            'identityClass' => 'App\Models\Manager',
+            'idParam' => 'adminId',
+            'loginUrl' => ['/' . getenv('ADMIN_MODULE') . '/default/login']
 
         ]);
     }

@@ -10,11 +10,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model App\Modules\Admin\Modules\System\Models\ManagerSearch */
+/* @var $model App\Modules\Admin\Modules\System\Models\DictSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="manager-search">
+<div class="dict-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -23,17 +23,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
+    <?= $form->field($model, 'code') ?>
+
     <?= $form->field($model, 'name') ?>
 
-    <?= $form->field($model, 'email') ?>
+    <?= $form->field($model, 'createdAt') ?>
 
-    <?= $form->field($model, 'passwordHash') ?>
-
-    <?= $form->field($model, 'authKey') ?>
-
-    <?php // echo $form->field($model, 'createdAt') ?>
-
-    <?php // echo $form->field($model, 'updatedAt') ?>
+    <?= $form->field($model, 'updatedAt') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

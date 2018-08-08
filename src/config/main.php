@@ -34,6 +34,9 @@ return [
 
         ],
         'db' => require __DIR__ . '/db.php',
+        'dictManager' => [
+            'class' => 'App\Components\DictManager',
+        ]
     ],
     'params' => $params,
 ];

@@ -40,14 +40,11 @@ body {
   bottom: 0;
   left: 0;
 }
-.main-sidebar > .nav > .nav-item > .nav-link {
+.main-sidebar .nav .nav-item .nav-link:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
-.main-sidebar .nav .nav {
-  background-color: rgba(0, 0, 0, 0.1);
-}
 .main-sidebar .nav .nav-item.active .nav-link {
-  color: #007bff;
+  background-color: #007bff;
 }
 .main-sidebar .nav .nav-item.collapsed {
   border-left: 5px solid transparent;
@@ -78,6 +75,13 @@ body {
   top: 0;
   bottom: 0;
   left: 180px;
+}
+.main-sub-sidebar .header {
+  padding: .5rem 1rem;
+  color: #6c757d;
+  border-bottom: 1px solid #ddd;
+  margin-top: .75rem;
+  font-size: .75rem;
 }
 .main-sub-sidebar .nav-item.active .nav-link {
   color: #007bff !important;

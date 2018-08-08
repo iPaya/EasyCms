@@ -4,6 +4,7 @@
  * @copyright Copyright (c) 2018 ipaya.cn
  */
 
+use App\Components\DictManager;
 use EasyCms\Module;
 use yii\helpers\ArrayHelper;
 
@@ -73,4 +74,12 @@ function module($id)
 function admin_module()
 {
     return \module(getenv('ADMIN_MODULE'));
+}
+
+/**
+ * @return DictManager
+ */
+function dict_manager()
+{
+    return Yii::$app->get('dictManager');
 }

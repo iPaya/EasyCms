@@ -52,18 +52,17 @@ body {
   bottom: 0;
   left: 0;
 
-  > .nav > .nav-item > .nav-link {
-    background-color: rgba(0, 0, 0, .20);
-  }
-
-  .nav .nav {
-    background-color: rgba(0, 0, 0, .1);
-  }
 
   .nav .nav-item {
+
+    .nav-link {
+      &:hover {
+        background-color: rgba(0,0,0,.2);
+      }
+    }
     &.active {
       .nav-link {
-        color: #007bff;
+        background-color: #007bff;
       }
     }
 
@@ -108,7 +107,16 @@ body {
   bottom: 0;
   left: @sidebar-width;
 
+  .header {
+    padding: .5rem 1rem;
+    color: #6c757d;
+    border-bottom: 1px solid #ddd;
+    margin-top: .75rem;
+    font-size: .75rem;
+  }
+
   .nav-item {
+
     &.active {
       .nav-link {
         color: #007bff !important;
@@ -119,6 +127,7 @@ body {
       color: #6c757d !important;
     }
   }
+
 }
 
 .main-login {
