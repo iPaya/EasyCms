@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2f1b0e77cb902f881ae32ff7c92d00e4",
+    "content-hash": "6b7c74439a7c7d6c683cf6d6e46637eb",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -207,6 +207,54 @@
                 "html"
             ],
             "time": "2018-02-23T01:58:20+00:00"
+        },
+        {
+            "name": "ipaya/yii2-script-block",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iPaya/yii2-script-block.git",
+                "reference": "1aecaaf0c403c98a14530614e342254475e4cdf9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iPaya/yii2-script-block/zipball/1aecaaf0c403c98a14530614e342254475e4cdf9",
+                "reference": "1aecaaf0c403c98a14530614e342254475e4cdf9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "iPaya\\ScriptBlock\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Di Zhang",
+                    "email": "zhangdi_me@163.com"
+                }
+            ],
+            "description": "The script block extension for Yii2.",
+            "keywords": [
+                "extension",
+                "script block",
+                "yii2"
+            ],
+            "time": "2018-01-16T13:39:56+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
