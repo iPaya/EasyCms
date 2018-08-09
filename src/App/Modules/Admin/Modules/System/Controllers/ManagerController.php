@@ -12,6 +12,7 @@ use App\Models\Manager;
 use App\Modules\Admin\Controller;
 use App\Modules\Admin\Modules\System\Models\ManagerSearch;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -52,8 +53,27 @@ class ManagerController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
+        $roles = ArrayHelper::map(auth_manager()->getRoles(), 'name', 'description');
+        $managerRoles = ArrayHelper::map(auth_manager()->getRolesByUser($model->id), 'name', 'description');
+
+        $request = \Yii::$app->request;
+        if ($request->isPost) {
+            $authManager = auth_manager();
+            $authManager->revokeAll($model->id);
+            $newRoles = $request->post('roles', []);
+            foreach ($newRoles as $name) {
+                $authManager->assign($authManager->getRole($name), $model->id);
+            }
+
+            return $this->refresh();
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'roles' => $roles,
+            'managerRoles' => $managerRoles,
         ]);
     }
 

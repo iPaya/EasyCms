@@ -23,6 +23,20 @@ $this->title = '管理员';
         'columns' => [
             'id',
             'name',
+            [
+                'header'=>'角色',
+                'format'=>'raw',
+                'value'=>function($model, $key, $index, $column){
+                    $roles = auth_manager()->getRolesByUser($model->id);
+                    ob_start();
+
+                    foreach($roles as $role){
+                        echo Html::tag('span', $role->description , ['class' => 'badge badge-primary'])."\n";
+                    }
+
+                    return ob_get_clean();
+                }
+            ],
             'email:email',
             //'createdAt',
             'updatedAt:datetime',
