@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= Html::errorSummary($model, ['class' => 'alert alert-danger']) ?>
 
-    <?= $form->field($model, 'name')->textInput(['readonly' => true]) ?>
+    <?= $form->field($model, 'name')->textInput(['readonly' => $model->scenario != RoleForm::SCENARIO_CREATE]) ?>
     <?= $form->field($model, 'description')->textInput() ?>
 
     <div class="form-group">

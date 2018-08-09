@@ -39,7 +39,8 @@ class RoleController extends Controller
     public function actionCreate()
     {
         $model = new RoleForm([
-            'name' => 'role_' . \Yii::$app->security->generateRandomString(8)
+            'scenario' => RoleForm::SCENARIO_CREATE,
+            'isNewRecord' => true,
         ]);
 
         if ($model->load(\Yii::$app->request->post()) && $model->save()) {
@@ -59,12 +60,14 @@ class RoleController extends Controller
         }
 
         $model = new RoleForm([
+            'scenario' => RoleForm::SCENARIO_UPDATE,
+            'isNewRecord' => false,
             'name' => $name,
             'description' => $role->description,
         ]);
 
         if ($model->load(\Yii::$app->request->post()) && $model->save()) {
-            return $this->refresh();
+            return $this->redirect(['update', 'name' => $model->name]);
         }
 
         return $this->render('update', [

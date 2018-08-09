@@ -38,7 +38,8 @@ class PermissionController extends Controller
     public function actionCreate()
     {
         $model = new PermissionForm([
-            'name' => 'permission_'.\Yii::$app->security->generateRandomString(8)
+            'scenario' => PermissionForm::SCENARIO_CREATE,
+            'isNewRecord' => true,
         ]);
 
         if ($model->load(\Yii::$app->request->post()) && $model->save()) {
@@ -58,6 +59,8 @@ class PermissionController extends Controller
         }
 
         $model = new PermissionForm([
+            'scenario' => PermissionForm::SCENARIO_UPDATE,
+            'isNewRecord' => false,
             'name' => $name,
             'description' => $permission->description,
         ]);
