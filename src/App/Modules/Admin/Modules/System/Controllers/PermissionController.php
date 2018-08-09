@@ -38,7 +38,7 @@ class PermissionController extends Controller
     public function actionCreate()
     {
         $model = new PermissionForm([
-            'name' => \Yii::$app->security->generateRandomString(8)
+            'name' => 'permission_'.\Yii::$app->security->generateRandomString(8)
         ]);
 
         if ($model->load(\Yii::$app->request->post()) && $model->save()) {
