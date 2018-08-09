@@ -15,12 +15,18 @@ class Module extends \EasyCms\Module
     {
         parent::init();
         $this->setMenu([
+            //
             ['label' => '管理员管理', 'options'=>['class'=>'header']],
             ['label' => '管理员', 'url' =>[ 'manager/index']],
             ['label' => '添加管理员', 'url' =>[ 'manager/create']],
+            //
             ['label' => '字典管理', 'options'=>['class'=>'header']],
             ['label' => '字典', 'url' =>[ 'dict/index']],
             ['label' => '添加字典', 'url' =>[ 'dict/create']],
+            // 权限管理
+            ['label' => '权限管理', 'options'=>['class'=>'header']],
+            ['label' => '权限', 'url' =>[ 'permission/index']],
+            ['label' => '添加权限', 'url' =>[ 'permission/create']],
         ]);
     }
 }

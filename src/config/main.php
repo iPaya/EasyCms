@@ -29,10 +29,6 @@ return [
                 ],
             ],
         ],
-        'authManager' => [
-            'class' => 'yii\rbac\PhpManager',
-
-        ],
         'db' => require __DIR__ . '/db.php',
         'dictManager' => [
             'class' => 'App\Components\DictManager',

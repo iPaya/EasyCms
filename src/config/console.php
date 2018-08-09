@@ -8,4 +8,13 @@
 return [
     'id'=>'console',
     'controllerNamespace'=>'App\Commands',
+    'controllerMap'=>[
+        'migrate'=>[
+            'class'=>'yii\console\controllers\MigrateController',
+            'migrationPath'=>[
+                '@Root/src/migrations',
+                '@yii/rbac/migrations/'
+            ]
+        ]
+    ]
 ];

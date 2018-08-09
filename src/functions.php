@@ -7,6 +7,8 @@
 use App\Components\DictManager;
 use EasyCms\Module;
 use yii\helpers\ArrayHelper;
+use yii\rbac\DbManager;
+use yii\rbac\ManagerInterface;
 
 /**
  * @return string
@@ -82,4 +84,12 @@ function admin_module()
 function dict_manager()
 {
     return Yii::$app->get('dictManager');
+}
+
+/**
+ * @return ManagerInterface
+ */
+function auth_manager()
+{
+    return Yii::$app->get('authManager');
 }

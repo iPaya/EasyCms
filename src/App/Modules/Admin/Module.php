@@ -37,7 +37,9 @@ class Module extends \EasyCms\Module
             'identityClass' => 'App\Models\Manager',
             'idParam' => 'adminId',
             'loginUrl' => ['/' . getenv('ADMIN_MODULE') . '/default/login']
-
+        ]);
+        \Yii::$app->set('authManager', [
+            'class' => 'yii\rbac\DbManager',
         ]);
     }
 }
