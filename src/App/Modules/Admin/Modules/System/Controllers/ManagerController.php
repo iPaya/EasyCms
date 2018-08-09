@@ -20,6 +20,13 @@ use yii\web\NotFoundHttpException;
  */
 class ManagerController extends Controller
 {
+    public function accessRules()
+    {
+        return [
+            ['allow' => true, 'permissions' => ['permission_manageManager']],
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */

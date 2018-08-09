@@ -14,6 +14,13 @@ use yii\web\NotFoundHttpException;
 
 class PermissionController extends Controller
 {
+    public function accessRules()
+    {
+        return [
+            ['allow' => true, 'permissions' => ['permission_manageRbac']],
+        ];
+    }
+
     public function verbs()
     {
         return [

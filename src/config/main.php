@@ -32,6 +32,9 @@ return [
         'db' => require __DIR__ . '/db.php',
         'dictManager' => [
             'class' => 'App\Components\DictManager',
+        ],
+        'authManager'=>[
+            'class' => 'yii\rbac\DbManager',
         ]
     ],
     'params' => $params,

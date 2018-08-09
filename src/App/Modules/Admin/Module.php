@@ -14,8 +14,18 @@ class Module extends \EasyCms\Module
 
     public function getNav(): array
     {
+        $user = \Yii::$app->user;
         return [
-            ['label' => '系统管理', 'url' => module_url($this, ['system/manager/index']), 'active' => ('system' == current_module()->id)],
+            [
+                'label' => '系统管理',
+                'url' => module_url($this, ['system/default/index']),
+                'active' => ('system' == current_module()->id),
+                'visible' => (
+                    $user->can('permission_manageRbac') ||
+                    $user->can('permission_manageManager') ||
+                    $user->can('permission_manageDict')
+                ),
+            ],
         ];
     }
 
@@ -37,9 +47,6 @@ class Module extends \EasyCms\Module
             'identityClass' => 'App\Models\Manager',
             'idParam' => 'adminId',
             'loginUrl' => ['/' . getenv('ADMIN_MODULE') . '/default/login']
-        ]);
-        \Yii::$app->set('authManager', [
-            'class' => 'yii\rbac\DbManager',
         ]);
     }
 }

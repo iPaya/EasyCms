@@ -20,6 +20,13 @@ use yii\web\NotFoundHttpException;
  */
 class DictController extends Controller
 {
+    public function accessRules()
+    {
+        return [
+            ['allow' => true, 'permissions' => ['permission_manageDict']],
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -54,11 +61,11 @@ class DictController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        $items = $model->getItems()->orderBy(['sortNo'=>SORT_ASC])->all();
+        $items = $model->getItems()->orderBy(['sortNo' => SORT_ASC])->all();
 
         $itemModel = new DictItem([
             'dictId' => $model->id,
-            'sortNo'=>0,
+            'sortNo' => 0,
         ]);
 
         if ($itemModel->load(Yii::$app->request->post()) && $itemModel->save()) {

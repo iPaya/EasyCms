@@ -10,9 +10,9 @@ use yii\helpers\ArrayHelper;
 $currentModule = current_module();
 $sidebarMenu = [];
 $modules = Yii::$app->modules;
-foreach($modules as $module){
-    if($module instanceof Module){
-        $sidebarMenu = ArrayHelper::merge($sidebarMenu,$module->getNav());
+foreach ($modules as $module) {
+    if ($module instanceof Module) {
+        $sidebarMenu = ArrayHelper::merge($sidebarMenu, $module->getNav());
     }
 }
 ?>
