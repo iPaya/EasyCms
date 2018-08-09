@@ -14,8 +14,8 @@ $identity = Yii::$app->user->getIdentity();
 $adminModule = admin_module();
 $navItems = [
     ['label' => '消息 <span class="badge badge-pill badge-danger">1</span>', 'url' => '',],
-    ['label' => $identity->name, 'url' => ''],
-    ['label' => '退出', 'url' => module_url($adminModule,['default/logout']), 'linkOptions' => ['data-method' => 'post']],
+    ['label' => $identity->name, 'url' => module_url($adminModule, ['account/profile/index'])],
+    ['label' => '退出', 'url' => module_url($adminModule, ['default/logout']), 'linkOptions' => ['data-method' => 'post']],
 ];
 
 ?>

@@ -40,7 +40,10 @@ class Module extends \EasyCms\Module
         $this->setModules([
             'system' => [
                 'class' => 'App\Modules\Admin\Modules\System\Module',
-            ]
+            ],
+            'account' => [
+                'class' => 'App\Modules\Admin\Modules\Account\Module',
+            ],
         ]);
         \Yii::$app->set('user', [
             'class' => 'yii\web\User',
