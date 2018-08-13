@@ -57,18 +57,6 @@ class LoginForm extends Model
     }
 
     /**
-     * Logs in a user using the provided username and password.
-     * @return boolean whether the user is logged in successfully
-     */
-    public function login()
-    {
-        if ($this->validate()) {
-            return Yii::$app->user->login($this->getManager());
-        }
-        return false;
-    }
-
-    /**
      * Finds user by [[username]]
      *
      * @return Manager|null
@@ -80,5 +68,17 @@ class LoginForm extends Model
         }
 
         return $this->_manager;
+    }
+
+    /**
+     * Logs in a user using the provided username and password.
+     * @return boolean whether the user is logged in successfully
+     */
+    public function login()
+    {
+        if ($this->validate()) {
+            return Yii::$app->user->login($this->getManager());
+        }
+        return false;
     }
 }

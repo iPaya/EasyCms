@@ -1,12 +1,10 @@
 <?php
-
-
 /**
  * @link http://www.ipaya.cn/
  * @copyright Copyright (c) 2018 ipaya.cn
  */
 
-use yii\db\Migration;
+use App\Components\Migration;
 
 /**
  * Class m180808_074433_create_tbl_dict
@@ -24,7 +22,7 @@ class m180808_074433_create_tbl_dict extends Migration
             'name' => $this->string()->notNull()->unique()->comment('名称'),
             'createdAt' => $this->integer(),
             'updatedAt' => $this->integer(),
-        ]);
+        ], $this->getTableOptions() . ' comment "字典表"');
     }
 
     /**

@@ -1,6 +1,10 @@
 <?php
+/**
+ * @link http://www.ipaya.cn/
+ * @copyright Copyright (c) 2018 ipaya.cn
+ */
 
-use yii\db\Migration;
+use App\Components\Migration;
 use yii\rbac\Permission;
 use yii\rbac\Role;
 

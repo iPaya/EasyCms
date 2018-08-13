@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 2018 ipaya.cn
  */
 
-use EasyCms\Module;
+use App\Module;
 use yii\helpers\ArrayHelper;
 
 $currentModule = current_module();
@@ -19,6 +19,6 @@ foreach ($modules as $module) {
 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-2 text-muted">
     <span>导航栏</span>
 </h6>
-<?= \EasyCms\Widgets\SidebarNav::widget([
+<?= \App\Widgets\SidebarNav::widget([
     'items' => $sidebarMenu,
 ]) ?>

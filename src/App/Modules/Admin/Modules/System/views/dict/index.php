@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'updatedAt:datetime',
 
-            ['class' => \EasyCms\Widgets\ActionColumn::class],
+            ['class' => \App\Widgets\ActionColumn::class],
         ],
     ]); ?>
 </div>

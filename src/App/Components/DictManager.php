@@ -27,34 +27,6 @@ class DictManager extends Component
     }
 
     /**
-     * @return array
-     */
-    public function reload():array
-    {
-        $this->clean();
-
-        $cache = [];
-        $models = Dict::find()->all();
-        foreach ($models as $model) {
-            $items = $model->getItems()->orderBy(['sortNo'=>SORT_ASC])->all();
-            foreach ($items as $item) {
-                $cache[$model->code][$item->value] = $item->name;
-            }
-        }
-
-        $this->cache->set(self::CACHE_ID, $cache);
-        return $cache;
-    }
-
-    /**
-     *
-     */
-    public function clean()
-    {
-        $this->cache->delete(self::CACHE_ID);
-    }
-
-    /**
      * @param string $code
      * @return array
      */
@@ -66,6 +38,34 @@ class DictManager extends Component
         }
 
         return $cache[$code] ?? [];
+    }
+
+    /**
+     * @return array
+     */
+    public function reload(): array
+    {
+        $this->clean();
+
+        $cache = [];
+        $models = Dict::find()->all();
+        foreach ($models as $model) {
+            $items = $model->getItems()->orderBy(['sortNo' => SORT_ASC])->all();
+            foreach ($items as $item) {
+                $cache[$model->code][$item->value] = $item->name;
+            }
+        }
+
+        $this->cache->set(self::CACHE_ID, $cache, 3600);
+        return $cache;
+    }
+
+    /**
+     *
+     */
+    public function clean()
+    {
+        $this->cache->delete(self::CACHE_ID);
     }
 
 }

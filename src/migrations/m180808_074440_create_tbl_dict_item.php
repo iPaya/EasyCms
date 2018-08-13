@@ -1,12 +1,10 @@
 <?php
-
-
 /**
  * @link http://www.ipaya.cn/
  * @copyright Copyright (c) 2018 ipaya.cn
  */
 
-use yii\db\Migration;
+use App\Components\Migration;
 
 /**
  * Class m180808_074440_create_tbl_dict_item
@@ -26,7 +24,7 @@ class m180808_074440_create_tbl_dict_item extends Migration
             'sortNo' => $this->integer()->notNull()->defaultValue(0)->comment('排序号'),
             'createdAt' => $this->integer(),
             'updatedAt' => $this->integer(),
-        ]);
+        ], $this->getTableOptions() . ' comment "字典条目表"');
 
         $this->addForeignKey('fk-dict_item-dictId', '{{%dict_item}}', 'dictId', '{{%dict}}', 'id', 'cascade', 'cascade');
     }
@@ -36,9 +34,8 @@ class m180808_074440_create_tbl_dict_item extends Migration
      */
     public function safeDown()
     {
-        $this->execute('SET FOREIGN_KEY_CHECKS = 0');
+        $this->dropForeignKey('fk-dict_item-dictId', '{{%dict_item}}');
         $this->dropTable('{{%dict_item}}');
-        $this->execute('SET FOREIGN_KEY_CHECKS = 1');
     }
 
 }

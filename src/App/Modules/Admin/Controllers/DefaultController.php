@@ -61,6 +61,6 @@ class DefaultController extends Controller
     public function actionLogout()
     {
         \Yii::$app->user->logout();
-        return $this->redirect(module_url($this->module,['default/index']));
+        return $this->redirect(module_url($this->module, ['default/index']));
     }
 }

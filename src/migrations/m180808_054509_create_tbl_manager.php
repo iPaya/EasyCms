@@ -1,13 +1,11 @@
 <?php
-
-
 /**
  * @link http://www.ipaya.cn/
  * @copyright Copyright (c) 2018 ipaya.cn
  */
 
-use EasyCms\Components\Migration;
-use EasyCms\Helpers\PasswordHelper;
+use App\Components\Migration;
+use App\Helpers\PasswordHelper;
 
 
 /**

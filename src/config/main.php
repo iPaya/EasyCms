@@ -4,6 +4,7 @@
  * @copyright Copyright (c) 2018 ipaya.cn
  */
 
+
 $params = require __DIR__ . '/params.php';
 
 return [
@@ -33,8 +34,16 @@ return [
         'dictManager' => [
             'class' => 'App\Components\DictManager',
         ],
-        'authManager'=>[
+        'authManager' => [
             'class' => 'yii\rbac\DbManager',
+        ],
+        'fileSystem' => [
+            'class' => 'App\FileSystem\Component',
+            'adapter' => new League\Flysystem\Adapter\Local(EASYCMS_ROOT . '/files'),
+
+        ],
+        'formatter' => [
+            'sizeFormatBase' => 1000,
         ]
     ],
     'params' => $params,

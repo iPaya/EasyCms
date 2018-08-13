@@ -7,7 +7,7 @@
 namespace App\Modules\Admin;
 
 
-class Module extends \EasyCms\Module
+class Module extends \App\Module
 {
     public $layout = 'main';
     public $controllerNamespace = 'App\Modules\Admin\Controllers';
@@ -24,6 +24,14 @@ class Module extends \EasyCms\Module
                     $user->can('permission_manageRbac') ||
                     $user->can('permission_manageManager') ||
                     $user->can('permission_manageDict')
+                ),
+            ],
+            [
+                'label' => '文件管理',
+                'url' => module_url($this, ['file/file/index']),
+                'active' => ('file' == current_module()->id),
+                'visible' => (
+                $user->can('permission_manageFile')
                 ),
             ],
         ];
@@ -43,6 +51,9 @@ class Module extends \EasyCms\Module
             ],
             'account' => [
                 'class' => 'App\Modules\Admin\Modules\Account\Module',
+            ],
+            'file' => [
+                'class' => 'App\Modules\Admin\Modules\File\Module',
             ],
         ]);
         \Yii::$app->set('user', [

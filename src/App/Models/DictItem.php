@@ -8,8 +8,6 @@
 
 namespace App\Models;
 
-use Yii;
-
 /**
  * This is the model class for table "{{%dict_item}}".
  *

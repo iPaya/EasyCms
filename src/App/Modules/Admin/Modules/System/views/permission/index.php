@@ -25,7 +25,7 @@ $this->title = '权限';
                 }
             ],
             [
-                'class' => \EasyCms\Widgets\ActionColumn::class,
+                'class' => \App\Widgets\ActionColumn::class,
                 'template' => '{update} {delete}',
                 'urlCreator' => function (string $action, \yii\rbac\Permission $model, $key, $index, $column) {
                     return [$action, 'name' => $model->name];

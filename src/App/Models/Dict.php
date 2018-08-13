@@ -8,8 +8,6 @@
 
 namespace App\Models;
 
-use Yii;
-
 /**
  *
  * @property int $id
@@ -31,12 +29,42 @@ class Dict extends BaseDict
     }
 
     /**
+     * @param string $code
+     * @param string $name
+     * @param array $items
+     * @return bool
+     */
+    public static function create(string $code, string $name, $items = []): bool
+    {
+        $dict = new Dict([
+            'code' => $code,
+            'name' => $name
+        ]);
+        if (!$dict->save()) {
+            return false;
+        }
+        foreach ($items as $item) {
+            $dictItem = new DictItem([
+                'dictId' => $dict->id,
+                'name' => $item['name'],
+                'value' => $item['value'],
+                'sortNo' => $item['sortNo'],
+            ]);
+            if (!$dictItem->save()) {
+                return false;
+            }
+        }
+        dict_manager()->reload();
+        return true;
+    }
+
+    /**
      * @return \yii\db\ActiveQuery|DictItemQuery
      */
     public function getItems()
     {
-        return $this->hasMany(DictItem::class,[
-            'dictId'=>'id'
+        return $this->hasMany(DictItem::class, [
+            'dictId' => 'id'
         ]);
     }
 }

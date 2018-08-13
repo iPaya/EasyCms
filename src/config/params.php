@@ -5,11 +5,11 @@
  */
 
 return [
-    'moduleAutoloadPaths'=>[
-        '@EasyCms/Modules',
+    'moduleAutoloadPaths' => [
+        '@App/Modules',
         '@Root/modules'
     ],
-    'password'=>[
-        'salt'=>'123203kfmvjr3emsl'
+    'password' => [
+        'salt' => '123203kfmvjr3emsl'
     ]
 ];

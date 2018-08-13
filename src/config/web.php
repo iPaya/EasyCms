@@ -11,7 +11,10 @@ $config = [
     'modules' => [
         getenv('ADMIN_MODULE') => [
             'class' => 'App\Modules\Admin\Module'
-        ]
+        ],
+        'file' => [
+            'class' => 'App\Modules\File\Module'
+        ],
     ],
     'components' => [
         'request' => [
@@ -31,6 +34,17 @@ $config = [
                 'hintOptions' => [
                     'class' => 'form-text text-muted'
                 ]
+            ],
+            'yii\widgets\LinkPager' => [
+                'linkContainerOptions' => [
+                    'class' => 'page-item'
+                ],
+                'linkOptions' => [
+                    'class' => 'page-link'
+                ],
+                'disabledListItemSubTagOptions' => [
+                    'class' => 'page-link'
+                ],
             ]
         ]
     ]

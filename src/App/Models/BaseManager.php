@@ -6,8 +6,6 @@
 
 namespace App\Models;
 
-use Yii;
-
 /**
  * This is the model class for table "{{%manager}}".
  *
@@ -19,7 +17,7 @@ use Yii;
  * @property int $createdAt
  * @property int $updatedAt
  */
-class BaseManager extends \EasyCms\Db\ActiveRecord
+class BaseManager extends \App\Db\ActiveRecord
 {
     /**
      * {@inheritdoc}

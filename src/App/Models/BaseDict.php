@@ -8,8 +8,6 @@
 
 namespace App\Models;
 
-use Yii;
-
 /**
  * This is the model class for table "{{%dict}}".
  *
@@ -19,7 +17,7 @@ use Yii;
  * @property int $createdAt
  * @property int $updatedAt
  */
-class BaseDict extends \EasyCms\Db\ActiveRecord
+class BaseDict extends \App\Db\ActiveRecord
 {
     /**
      * {@inheritdoc}

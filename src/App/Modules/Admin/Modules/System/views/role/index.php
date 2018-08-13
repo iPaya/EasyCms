@@ -40,7 +40,7 @@ $this->title = '角色';
                 }
             ],
             [
-                'class' => \EasyCms\Widgets\ActionColumn::class,
+                'class' => \App\Widgets\ActionColumn::class,
                 'template' => '{permissions} {update} {delete}',
                 'urlCreator' => function (string $action, \yii\rbac\Role $model, $key, $index, $column) {
                     return [$action, 'name' => $model->name];

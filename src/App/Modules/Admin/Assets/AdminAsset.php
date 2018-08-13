@@ -18,7 +18,8 @@ class AdminAsset extends AssetBundle
     ];
     public $depends = [
         'iPaya\Bootstrap\BootstrapAsset',
-        'yii\web\YiiAsset'
+        'yii\web\YiiAsset',
+        'App\Assets\FontAwesome\FontAwesomeAsset',
     ];
     public $publishOptions = [
         'forceCopy' => YII_DEBUG,

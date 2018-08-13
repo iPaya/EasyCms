@@ -6,7 +6,7 @@
 
 namespace App\Models;
 
-use EasyCms\Helpers\PasswordHelper;
+use App\Helpers\PasswordHelper;
 use yii\web\IdentityInterface;
 
 /**
@@ -14,32 +14,6 @@ use yii\web\IdentityInterface;
 class Manager extends BaseManager implements IdentityInterface
 {
     public $password;
-
-    public function attributeLabels()
-    {
-        $labels = parent::attributeLabels();
-        $labels['password'] = '密码';
-        return $labels;
-    }
-
-    public function rules()
-    {
-        $rules = parent::rules();
-        $rules[] = ['password', 'required', 'on' => 'create'];
-        $rules[] = ['password', 'safe'];
-        return $rules;
-    }
-
-    public function beforeValidate()
-    {
-        if ($this->authKey == null) {
-            $this->authKey = \Yii::$app->security->generateRandomString();
-        }
-        if ($this->password) {
-            $this->passwordHash = PasswordHelper::generateHash($this->password,password_salt());
-        }
-        return parent::beforeValidate();
-    }
 
     /**
      * {@inheritdoc}
@@ -67,6 +41,32 @@ class Manager extends BaseManager implements IdentityInterface
         // TODO: Implement findIdentityByAccessToken() method.
     }
 
+    public function attributeLabels()
+    {
+        $labels = parent::attributeLabels();
+        $labels['password'] = '密码';
+        return $labels;
+    }
+
+    public function rules()
+    {
+        $rules = parent::rules();
+        $rules[] = ['password', 'required', 'on' => 'create'];
+        $rules[] = ['password', 'safe'];
+        return $rules;
+    }
+
+    public function beforeValidate()
+    {
+        if ($this->authKey == null) {
+            $this->authKey = \Yii::$app->security->generateRandomString();
+        }
+        if ($this->password) {
+            $this->passwordHash = PasswordHelper::generateHash($this->password, password_salt());
+        }
+        return parent::beforeValidate();
+    }
+
     /**
      * @inheritDoc
      */
@@ -78,17 +78,17 @@ class Manager extends BaseManager implements IdentityInterface
     /**
      * @inheritDoc
      */
-    public function getAuthKey()
+    public function validateAuthKey($authKey)
     {
-        return $this->authKey;
+        return $this->getAuthKey() === $authKey;
     }
 
     /**
      * @inheritDoc
      */
-    public function validateAuthKey($authKey)
+    public function getAuthKey()
     {
-        return $this->getAuthKey() === $authKey;
+        return $this->authKey;
     }
 
     /**

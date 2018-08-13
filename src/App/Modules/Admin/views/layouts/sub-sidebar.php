@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 2018 ipaya.cn
  */
 
-use EasyCms\Module;
+use App\Module;
 use yii\widgets\Menu;
 
 $module = Yii::$app->controller->module;

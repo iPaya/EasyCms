@@ -5,9 +5,9 @@
  */
 
 use App\Components\DictManager;
-use EasyCms\Module;
+use App\Module;
+use League\Flysystem\Filesystem;
 use yii\helpers\ArrayHelper;
-use yii\rbac\DbManager;
 use yii\rbac\ManagerInterface;
 
 /**
@@ -92,4 +92,17 @@ function dict_manager()
 function auth_manager()
 {
     return Yii::$app->get('authManager');
+}
+
+/**
+ * @return Filesystem
+ */
+function file_system()
+{
+    return Yii::$app->get('fileSystem')->getFileSystem();
+}
+
+function format($value, $format)
+{
+    return Yii::$app->formatter->format($value, $format);
 }

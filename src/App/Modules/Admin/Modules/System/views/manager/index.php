@@ -41,7 +41,7 @@ $this->title = '管理员';
             //'createdAt',
             'updatedAt:datetime',
 
-            ['class' => \EasyCms\Widgets\ActionColumn::class],
+            ['class' => \App\Widgets\ActionColumn::class],
         ],
     ]); ?>
 </div>

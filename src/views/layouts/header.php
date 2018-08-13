@@ -13,7 +13,7 @@ $identity = Yii::$app->user->getIdentity();
 $navItems = [
     ['label' => '消息 <span class="badge badge-pill badge-danger">1</span>', 'url' => '',],
     ['label' => '我', 'url' => ''],
-    ['label' => '退出', 'url' => ['/EasyCms/default/logout'], 'linkOptions' => ['data-method' => 'post']],
+    ['label' => '退出', 'url' => ['/App/default/logout'], 'linkOptions' => ['data-method' => 'post']],
 ];
 
 ?>

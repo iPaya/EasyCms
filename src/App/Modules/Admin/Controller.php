@@ -7,7 +7,7 @@
 namespace App\Modules\Admin;
 
 
-class Controller extends \EasyCms\Controller
+class Controller extends \App\Controller
 {
     public function accessRules()
     {

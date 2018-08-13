@@ -7,7 +7,7 @@
 namespace App\Modules\Admin\Modules\System;
 
 
-class Module extends \EasyCms\Module
+class Module extends \App\Module
 {
     public $controllerNamespace = 'App\Modules\Admin\Modules\System\Controllers';
 

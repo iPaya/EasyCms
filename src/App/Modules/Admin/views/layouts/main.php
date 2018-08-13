@@ -6,7 +6,7 @@
 
 
 use App\Modules\Admin\Assets\AdminAsset;
-use EasyCms\Module;
+use App\Module;
 use yii\helpers\Html;
 use yii\web\View;
 

@@ -130,3 +130,16 @@ body {
 .has-error .help-block {
   color: red;
 }
+.file-manager tr > td {
+  height: 40px;
+  line-height: 40px;
+  padding: 0!important;
+}
+.file-manager tr > td.icon {
+  width: 50px;
+  text-align: center;
+}
+.file-manager tr > td.icon .fa {
+  line-height: 40px;
+  font-size: 20px;
+}
