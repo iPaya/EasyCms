@@ -44,7 +44,14 @@ return [
         ],
         'formatter' => [
             'sizeFormatBase' => 1000,
-        ]
+        ],
+        'settings' => [
+            'class' => 'pheme\settings\components\Settings'
+        ],
+        'mailer' => function () {
+            $settings = App\Settings\MailSettings::getInstance();
+            return $settings->createMailer();
+        },
     ],
     'params' => $params,
 ];

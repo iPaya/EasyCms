@@ -7,6 +7,7 @@
 use App\Components\DictManager;
 use App\Module;
 use League\Flysystem\Filesystem;
+use pheme\settings\components\Settings;
 use yii\helpers\ArrayHelper;
 use yii\rbac\ManagerInterface;
 
@@ -102,7 +103,30 @@ function file_system()
     return Yii::$app->get('fileSystem')->getFileSystem();
 }
 
+/**
+ * @param $value
+ * @param $format
+ * @return string
+ */
 function format($value, $format)
 {
     return Yii::$app->formatter->format($value, $format);
+}
+
+/**
+ * @return Settings
+ */
+function settings()
+{
+    return Yii::$app->get('settings');
+}
+
+/**
+ * @param string $key
+ * @param \App\Settings\AbstractSettings|string $settingsClass
+ * @return string
+ */
+function settings_value($key, $settingsClass)
+{
+    return \settings()->get($settingsClass::sectionName() . '.' . $key);
 }

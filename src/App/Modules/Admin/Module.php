@@ -17,7 +17,7 @@ class Module extends \App\Module
         $user = \Yii::$app->user;
         return [
             [
-                'label' => '系统管理',
+                'label' => '系统',
                 'url' => module_url($this, ['system/default/index']),
                 'active' => ('system' == current_module()->id),
                 'visible' => (
@@ -27,12 +27,20 @@ class Module extends \App\Module
                 ),
             ],
             [
-                'label' => '文件管理',
+                'label' => '文件',
                 'url' => module_url($this, ['file/file/index']),
                 'active' => ('file' == current_module()->id),
                 'visible' => (
                 $user->can('permission_manageFile')
                 ),
+            ],
+            [
+                'label' => '设置',
+                'url' => module_url($this, ['settings/settings/site']),
+                'active' => ('settings' == current_module()->id),
+//                'visible' => (
+//                $user->can('permission_manageFile')
+//                ),
             ],
         ];
     }
@@ -54,6 +62,9 @@ class Module extends \App\Module
             ],
             'file' => [
                 'class' => 'App\Modules\Admin\Modules\File\Module',
+            ],
+            'settings' => [
+                'class' => 'App\Modules\Admin\Modules\Settings\Module'
             ],
         ]);
         \Yii::$app->set('user', [

@@ -13,7 +13,8 @@ return [
             'class' => 'yii\console\controllers\MigrateController',
             'migrationPath' => [
                 '@Root/src/migrations',
-                '@yii/rbac/migrations/'
+                '@yii/rbac/migrations/',
+                '@vendor/pheme/yii2-settings/migrations'
             ]
         ]
     ]
