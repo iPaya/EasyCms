@@ -38,9 +38,17 @@ class Module extends \App\Module
                 'label' => '设置',
                 'url' => module_url($this, ['settings/settings/site']),
                 'active' => ('settings' == current_module()->id),
-//                'visible' => (
-//                $user->can('permission_manageFile')
-//                ),
+                'visible' => (
+                $user->can('permission_manageSettings')
+                ),
+            ],
+            [
+                'label' => '用户',
+                'url' => module_url($this, ['user/user/index']),
+                'active' => ('user' == current_module()->id),
+                'visible' => (
+                $user->can('permission_manageUser')
+                ),
             ],
         ];
     }
@@ -65,6 +73,9 @@ class Module extends \App\Module
             ],
             'settings' => [
                 'class' => 'App\Modules\Admin\Modules\Settings\Module'
+            ],
+            'user' => [
+                'class' => 'App\Modules\User\Admin\Module'
             ],
         ]);
         \Yii::$app->set('user', [

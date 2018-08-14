@@ -7,62 +7,69 @@
 namespace App\Widgets;
 
 
+use App\Components\AlertManager;
+use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
 
 class Alert extends Widget
 {
     /**
-     * @var string
+     * @var AlertManager
      */
-    public $message;
-    public $type = 'primary';
-    public $options = [];
+    public $alertManager;
+
     /**
-     * @var bool 是否可关闭
+     * @var array the alert types configuration for the flash messages.
+     * This array is setup as $key => $value, where:
+     * - key: the name of the session flash variable
+     * - value: the bootstrap alert type (i.e. danger, success, info, warning)
      */
-    public $dismissible = false;
-    public $dismissLabel = '<span aria-hidden="true">&times;</span>';
+    public $alertTypes = [
+        'error' => 'alert-danger',
+        'danger' => 'alert-danger',
+        'success' => 'alert-success',
+        'info' => 'alert-info',
+        'warning' => 'alert-warning',
+        'secondary' => 'alert-secondary',
+        'light' => 'alert-light',
+        'dark' => 'alert-dark'
+    ];
+    public $options = [];
 
-    public function init()
-    {
-        parent::init();
-        if (!isset($this->options['id'])) {
-            $this->options['id'] = $this->getId();
-        }
-        Html::addCssClass($this->options, ['alert', 'alert-' . $this->type]);
-        $this->options['role'] = 'alert';
-
-        if ($this->dismissible) {
-            Html::addCssClass($this->options, ['alert-dismissible']);
-        }
-
-        echo Html::beginTag('div', $this->options);
-
-        ob_start();
-        ob_implicit_flush(false);
-    }
-
+    /**
+     * {@inheritdoc}
+     */
     public function run()
     {
-        parent::run();
-        $contents = ob_get_clean();
+        $session = Yii::$app->session;
+        $flashes = $session->getAllFlashes();
+        $appendClass = isset($this->options['class']) ? ' ' . $this->options['class'] : ' alert alert-dismissible';
 
-        if ($this->dismissible) {
-            echo Html::tag('button', $this->dismissLabel, [
-                'type' => 'button',
-                'class' => 'close',
-                'data-dismiss' => 'alert',
-                'aria-label' => '关闭'
-            ]);
+        foreach ($flashes as $type => $flash) {
+            if (!isset($this->alertTypes[$type])) {
+                continue;
+            }
+
+            foreach ((array)$flash as $i => $message) {
+                echo Html::beginTag('div', array_merge($this->options, [
+                    'id' => $this->getId() . '-' . $type . '-' . $i,
+                    'class' => $this->alertTypes[$type] . $appendClass,
+                ]));
+
+                $messages = $this->alertManager->getFlashes($type);
+                echo implode($messages, "\n");
+
+                echo Html::button('<span aria-hidden="true">&times;</span>', [
+                    'class' => 'close',
+                    'data-dismiss' => 'alert',
+                    'aria-label' => 'Close'
+                ]);
+                echo Html::endTag('div');
+            }
+
+            $session->removeFlash($type);
         }
-
-        if ($this->message) {
-            echo $this->message;
-        } else {
-            echo $contents;
-        }
-
-        echo Html::endTag('div');
     }
+
 }

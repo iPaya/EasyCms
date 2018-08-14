@@ -4,6 +4,7 @@
  * @copyright Copyright (c) 2018 ipaya.cn
  */
 
+use App\Components\AlertManager;
 use App\Components\DictManager;
 use App\Module;
 use League\Flysystem\Filesystem;
@@ -129,4 +130,13 @@ function settings()
 function settings_value($key, $settingsClass)
 {
     return \settings()->get($settingsClass::sectionName() . '.' . $key);
+}
+
+/**
+ * @return AlertManager
+ * @throws \yii\base\InvalidConfigException
+ */
+function alert_manager()
+{
+    return Yii::$app->get('alertManager');
 }

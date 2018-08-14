@@ -5,6 +5,8 @@
  */
 
 
+use App\Components\Formatter;
+
 $params = require __DIR__ . '/params.php';
 
 return [
@@ -42,9 +44,12 @@ return [
             'adapter' => new League\Flysystem\Adapter\Local(EASYCMS_ROOT . '/files'),
 
         ],
-        'formatter' => [
-            'sizeFormatBase' => 1000,
-        ],
+        'formatter' => function () {
+            return new Formatter([
+                'sizeFormatBase' => 1000,
+                'datetimeFormat' => 'php: Y-m-d H:i:s'
+            ]);
+        },
         'settings' => [
             'class' => 'pheme\settings\components\Settings'
         ],
@@ -52,6 +57,13 @@ return [
             $settings = App\Settings\MailSettings::getInstance();
             return $settings->createMailer();
         },
+        'alertManager' => [
+            'class' => 'App\Components\AlertManager'
+        ],
+        'user' => [
+            'class' => 'yii\web\User',
+            'identityClass' => 'App\Models\User'
+        ],
     ],
     'params' => $params,
 ];

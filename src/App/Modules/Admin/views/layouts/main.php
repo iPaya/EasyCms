@@ -5,8 +5,8 @@
  */
 
 
-use App\Modules\Admin\Assets\AdminAsset;
 use App\Module;
+use App\Modules\Admin\Assets\AdminAsset;
 use yii\helpers\Html;
 use yii\web\View;
 
@@ -15,7 +15,6 @@ use yii\web\View;
 /** @var $module Module string */
 
 AdminAsset::register($this);
-
 $module = Yii::$app->controller->module;
 if ($module instanceof Module) {
     $subMenu = $module->getMenu();
@@ -27,7 +26,7 @@ foreach ($subMenu as $item) {
     if (isset($item['visible']) && $item['visible'] == true) {
         $hasSubmenu = true;
         break;
-    }elseif(!isset($item['visible'])){
+    } elseif (!isset($item['visible'])) {
         $hasSubmenu = true;
         break;
     }
@@ -62,6 +61,9 @@ foreach ($subMenu as $item) {
     <?php endif; ?>
     <main role="main" class="main-content <?= $hasSubmenu ? 'has-submodule' : '' ?>">
 
+        <?= \App\Widgets\Alert::widget([
+            'alertManager' => alert_manager(),
+        ]) ?>
         <?= $content ?>
 
         <footer class="main-footer mt-4 pt-2 mb-4">
