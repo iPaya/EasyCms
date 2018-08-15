@@ -33,6 +33,15 @@ class Formatter extends \yii\i18n\Formatter
     }
 
     /**
+     * @param $value
+     * @return mixed
+     */
+    public function asCron($value)
+    {
+        return $this->asDict($value, 'cronCronSamples');
+    }
+
+    /**
      * @param string|int $value
      * @param string $code
      * @return mixed

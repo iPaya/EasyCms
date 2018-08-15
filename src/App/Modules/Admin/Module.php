@@ -50,6 +50,14 @@ class Module extends \App\Module
                 $user->can('permission_manageUser')
                 ),
             ],
+            [
+                'label' => '定时任务',
+                'url' => module_url($this, ['cron/cron/index']),
+                'active' => ('cron' == current_module()->id),
+                'visible' => (
+                $user->can('permission_manageCron')
+                ),
+            ],
         ];
     }
 
@@ -76,6 +84,9 @@ class Module extends \App\Module
             ],
             'user' => [
                 'class' => 'App\Modules\User\Admin\Module'
+            ],
+            'cron' => [
+                'class' => 'App\Modules\Cron\Admin\Module'
             ],
         ]);
         \Yii::$app->set('user', [
