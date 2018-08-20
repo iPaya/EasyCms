@@ -17,8 +17,10 @@ class Module extends \App\Module
         $this->setMenu([
             ['label' => '基本信息', 'options' => ['class' => 'header']],
             ['label' => '站点信息', 'url' => ['settings/site']],
+            ['label' => '默认首页', 'url' => ['settings/default-home-page']],
             ['label' => '邮件设置', 'url' => ['settings/mail']],
             ['label' => '嵌入代码', 'url' => ['settings/code']],
+
         ]);
     }
 }

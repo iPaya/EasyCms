@@ -10,6 +10,7 @@ namespace App\Modules\Admin\Modules\Settings\Controllers;
 use App\Modules\Admin\Modules\Settings\Actions\SettingsAction;
 use App\Modules\Admin\Modules\Settings\Controller;
 use App\Settings\CodeSettings;
+use App\Settings\DefaultHomePageSettings;
 use App\Settings\MailSettings;
 use App\Settings\SiteSettings;
 use yii\helpers\Html;
@@ -33,6 +34,11 @@ class SettingsController extends Controller
                 'class' => SettingsAction::class,
                 'modelClass' => MailSettings::class,
                 'viewName' => 'mail',
+            ],
+            'default-home-page' => [
+                'class' => SettingsAction::class,
+                'modelClass' => DefaultHomePageSettings::class,
+                'viewName' => 'default-home-page',
             ],
         ];
     }

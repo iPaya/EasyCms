@@ -15,6 +15,10 @@ return [
     'basePath' => EASYCMS_ROOT . '/src',
     'vendorPath' => VENDOR_PATH,
     'runtimePath' => DASHBOARD_RUNTIME_PATH,
+    'bootstrap' => [
+        'log',
+        'App\Bootstrap\UrlManagerBootstrap',
+    ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
@@ -70,6 +74,13 @@ return [
                 'class' => 'yii\redis\Connection',
                 'hostname' => getenv('REDIS_HOST'),
                 'port' => getenv('REDIS_PORT'),
+            ]
+        ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'normalizer' => [
+                'class' => 'yii\web\UrlNormalizer',
             ]
         ]
     ],
