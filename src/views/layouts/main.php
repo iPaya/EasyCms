@@ -16,15 +16,6 @@ use yii\web\View;
 
 AppAsset::register($this);
 
-$module = Yii::$app->controller->module;
-if ($module instanceof Module) {
-    $subMenu = $module->getMenu();
-} else {
-    $subMenu = [];
-}
-
-$hasSubmodule = count($subMenu) > 0;
-$hasSubmodule = true;
 ?>
 <?php $this->beginPage() ?>
 
@@ -39,30 +30,12 @@ $hasSubmodule = true;
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body>
+<body id="page-top">
 <?php $this->beginBody() ?>
-<header class="main-header">
-    <?= $this->render('header') ?>
-</header>
-<div class="main-body">
-    <div class="main-sidebar">
-        <?= $this->render('sidebar') ?>
-    </div>
-    <?php if ($hasSubmodule): ?>
-        <div class="main-sub-sidebar">
-            <?= $this->render('sub-sidebar') ?>
-        </div>
-    <?php endif; ?>
-    <main role="main" class="main-content <?= $hasSubmodule ? 'has-submodule' : '' ?>">
-
-        <?= $content ?>
-
-        <footer class="main-footer mt-4 pt-2 mb-4">
-            <hr/>
-            <?= $this->render('footer') ?>
-        </footer>
-    </main>
-</div>
+<main class="main-body">
+    <?= $content ?>
+</main>
+<?= $this->render('footer') ?>
 <?php $this->endBody() ?>
 </body>
 </html>
