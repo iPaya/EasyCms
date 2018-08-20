@@ -24,7 +24,6 @@ class DefaultHomePageSettings extends AbstractSettings
     public function rules()
     {
         return [
-            ['targetRoute', 'required'],
             ['targetRoute', 'string'],
         ];
     }
