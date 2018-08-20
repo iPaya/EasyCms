@@ -4,10 +4,10 @@
  * @copyright Copyright (c) 2018 ipaya.cn
  */
 
-$db_host = getenv('DB_HOST');
-$db_name = getenv('DB_NAME');
-$db_username = getenv('DB_USERNAME');
-$db_password = getenv('DB_PASSWORD');
+$db_host = getenv('MYSQL_HOST');
+$db_name = getenv('MYSQL_NAME');
+$db_username = getenv('MYSQL_USERNAME');
+$db_password = getenv('MYSQL_PASSWORD');
 
 return [
     'class' => 'yii\db\Connection',

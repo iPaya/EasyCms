@@ -6,10 +6,29 @@
 
 namespace App\Widgets;
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 class ActionColumn extends \yii\grid\ActionColumn
 {
+    public function init()
+    {
+        parent::init();
+
+        $templates = explode('|', $this->template);
+
+        Html::addCssClass($this->buttonOptions, 'btn btn-sm btn-secondary');
+
+        $template = '';
+        foreach ($templates as $value) {
+            $template .= Html::tag('div', $value, [
+                'class' => 'btn-group mr-2 mt-2'
+            ]);
+        }
+
+        $this->template = $template;
+    }
+
     /**
      * Initializes the default button rendering callbacks.
      */
@@ -20,6 +39,7 @@ class ActionColumn extends \yii\grid\ActionColumn
         $this->initDefaultButton('delete', null, [
             'data-confirm' => '确认删除此项',
             'data-method' => 'post',
+            'class' => 'btn-danger'
         ]);
     }
 
@@ -45,7 +65,7 @@ class ActionColumn extends \yii\grid\ActionColumn
                     default:
                         $title = ucfirst($name);
                 }
-                $options = array_merge([
+                $options = ArrayHelper::merge([
                     'title' => $title,
                     'aria-label' => $title,
                     'data-pjax' => '0',

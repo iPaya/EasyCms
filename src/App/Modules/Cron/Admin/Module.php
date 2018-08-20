@@ -19,6 +19,9 @@ class Module extends \App\Module
             ['label' => '定时任务', 'options' => ['class' => 'header']],
             ['label' => '所有定时任务', 'url' => ['cron/index']],
             ['label' => '添加定时任务', 'url' => ['cron/create']],
+            // 队列
+            ['label' => '消息队列', 'options' => ['class' => 'header']],
+            ['label' => '所有消息队列', 'url' => ['queue/index']],
         ]);
     }
 }

@@ -7,6 +7,7 @@
 use App\Components\AlertManager;
 use App\Components\DictManager;
 use App\Module;
+use App\Queue\AbstractQueue;
 use League\Flysystem\Filesystem;
 use pheme\settings\components\Settings;
 use yii\helpers\ArrayHelper;
@@ -139,4 +140,12 @@ function settings_value($key, $settingsClass)
 function alert_manager()
 {
     return Yii::$app->get('alertManager');
+}
+
+/**
+ * @return AbstractQueue
+ */
+function queue()
+{
+    return Yii::$app->get('queue');
 }

@@ -64,6 +64,14 @@ return [
             'class' => 'yii\web\User',
             'identityClass' => 'App\Models\User'
         ],
+        'queue' => [
+            'class' => 'App\Queue\RedisQueue',
+            'redis' => [
+                'class' => 'yii\redis\Connection',
+                'hostname' => getenv('REDIS_HOST'),
+                'port' => getenv('REDIS_PORT'),
+            ]
+        ]
     ],
     'params' => $params,
 ];

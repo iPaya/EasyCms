@@ -11,5 +11,8 @@ return [
     ],
     'password' => [
         'salt' => '123203kfmvjr3emsl'
+    ],
+    'redis' => [
+        'key' => '__easycms',
     ]
 ];

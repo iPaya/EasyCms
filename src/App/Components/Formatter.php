@@ -42,6 +42,15 @@ class Formatter extends \yii\i18n\Formatter
     }
 
     /**
+     * @param $value
+     * @return mixed
+     */
+    public function asCronStatus($value)
+    {
+        return $this->asDict($value, 'cronStatus');
+    }
+
+    /**
      * @param string|int $value
      * @param string $code
      * @return mixed

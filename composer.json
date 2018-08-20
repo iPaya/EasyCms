@@ -11,6 +11,7 @@
     "pheme/yii2-settings": "^0.6.0",
     "vlucas/phpdotenv": "^2.5",
     "yiisoft/yii2": "^2.0.15",
+    "yiisoft/yii2-redis": "^2.0",
     "yiisoft/yii2-swiftmailer": "^2.1"
   },
   "repositories": [
