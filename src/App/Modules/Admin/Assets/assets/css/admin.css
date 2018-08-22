@@ -130,14 +130,13 @@ body {
 .has-error .help-block {
   color: red;
 }
-
 .detail-view th {
     width: 180px;
 }
 .file-manager tr > td {
   height: 40px;
   line-height: 40px;
-  padding: 0!important;
+    padding: 0 !important;
 }
 .file-manager tr > td.icon {
   width: 50px;
@@ -146,4 +145,14 @@ body {
 .file-manager tr > td.icon .fa {
   line-height: 40px;
   font-size: 20px;
+}
+
+.treeview {
+    font-size: 12px;
+}
+
+.treeview span.folder,
+.treeview span.file {
+    display: inline-block;
+    margin-right: 0.5rem;
 }

@@ -51,6 +51,24 @@ class Formatter extends \yii\i18n\Formatter
     }
 
     /**
+     * @param $value
+     * @return mixed
+     */
+    public function asPostStatus($value)
+    {
+        return $this->asDict($value, 'postStatus');
+    }
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function asPostType($value)
+    {
+        return $this->asDict($value, 'postType');
+    }
+
+    /**
      * @param string|int $value
      * @param string $code
      * @return mixed

@@ -8,6 +8,8 @@
 
 namespace App\Models;
 
+use yii\helpers\ArrayHelper;
+
 /**
  *
  * @property int $id
@@ -30,6 +32,34 @@ class FileDir extends BaseFileDir
     }
 
     /**
+     * @param string $dir
+     * @return FileDir
+     */
+    public static function getOrCreate(string $dir): FileDir
+    {
+        $dirs = preg_split('/(\/)/', $dir, -1, PREG_SPLIT_NO_EMPTY);
+        $path = '';
+        $currentDir = null;
+        foreach ($dirs as $name) {
+            $path .= '/' . $name;
+            $dir = FileDir::find()->andWhere(['dir' => $path])->one();
+            if ($dir == null) {
+                $dir = new FileDir([
+                    'name' => $name,
+                ]);
+                if ($currentDir == null) {
+                    $dir->parentId = 1;
+                } else {
+                    $dir->parentId = $currentDir->id;
+                }
+                $dir->save();
+            }
+            $currentDir = $dir;
+        }
+        return $currentDir;
+    }
+
+    /**
      * @return \yii\db\ActiveQuery|FileDirQuery
      */
     public function getParent()
@@ -47,5 +77,23 @@ class FileDir extends BaseFileDir
         }
 
         return parent::beforeValidate();
+    }
+
+    /**
+     * @param bool $recursive
+     * @return FileDir[]|array
+     */
+    public function getDirs($recursive = true)
+    {
+        if (!$recursive) {
+            return static::find()->andWhere(['parentId' => $this->id])->all();
+        } else {
+            $subDirs = static::find()->andWhere(['parentId' => $this->id])->all();
+            $dirs = [];
+            foreach ($subDirs as $dir) {
+                $dirs = ArrayHelper::merge($subDirs, $dir->getDirs(true));
+            }
+            return $dirs;
+        }
     }
 }

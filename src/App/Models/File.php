@@ -16,6 +16,7 @@ use yii\helpers\Url;
  *
  * @property int $id
  * @property int $rawId 原始文件
+ * @property int $dirId 目录
  * @property string $type 文件类型
  * @property string $uploadedDatetime 上传时间
  * @property int $createdAt
@@ -82,6 +83,9 @@ class File extends BaseFile
         return $this->hasOne(FileRaw::class, ['id' => 'rawId']);
     }
 
+    /**
+     * @return string
+     */
     public function getUrl()
     {
         return Url::to(['/file/file/view', 'id' => $this->id, 'filename' => $this->raw->filename]);

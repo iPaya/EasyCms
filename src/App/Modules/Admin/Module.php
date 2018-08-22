@@ -17,13 +17,11 @@ class Module extends \App\Module
         $user = \Yii::$app->user;
         return [
             [
-                'label' => '系统',
-                'url' => module_url($this, ['system/default/index']),
-                'active' => ('system' == current_module()->id),
+                'label' => '文章',
+                'url' => module_url($this, ['post/post/index']),
+                'active' => ('post' == current_module()->id),
                 'visible' => (
-                    $user->can('permission_manageRbac') ||
-                    $user->can('permission_manageManager') ||
-                    $user->can('permission_manageDict')
+                $user->can('permission_managePost')
                 ),
             ],
             [
@@ -32,6 +30,16 @@ class Module extends \App\Module
                 'active' => ('file' == current_module()->id),
                 'visible' => (
                 $user->can('permission_manageFile')
+                ),
+            ],
+            [
+                'label' => '系统',
+                'url' => module_url($this, ['system/default/index']),
+                'active' => ('system' == current_module()->id),
+                'visible' => (
+                    $user->can('permission_manageRbac') ||
+                    $user->can('permission_manageManager') ||
+                    $user->can('permission_manageDict')
                 ),
             ],
             [
@@ -87,6 +95,9 @@ class Module extends \App\Module
             ],
             'cron' => [
                 'class' => 'App\Modules\Cron\Admin\Module'
+            ],
+            'post' => [
+                'class' => 'App\Modules\Post\Admin\Module'
             ],
         ]);
         \Yii::$app->set('user', [
