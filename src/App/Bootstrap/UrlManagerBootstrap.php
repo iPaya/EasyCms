@@ -14,6 +14,12 @@ class UrlManagerBootstrap implements BootstrapInterface
 {
     public function bootstrap($app)
     {
+        /** @var Request $request */
+        $request = $app->request;
+        if ($request->resolve()[0] == 'migrate') {
+            return;
+        }
+
         $defaultHomePageSettings = DefaultHomePageSettings::getInstance();
 
         if ($defaultHomePageSettings->targetRoute) {
