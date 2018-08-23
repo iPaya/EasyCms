@@ -29,17 +29,21 @@ abstract class AbstractQueue extends Component
     abstract public function pushMessage(string $message): bool;
 
     /**
-     * @return AbstractJob
+     * @return AbstractJob|null
      */
-    public function pop(): AbstractJob
+    public function pop(): ?AbstractJob
     {
+        $message = $this->popMessage();
+        if ($message == null) {
+            return $message;
+        }
         return unserialize($this->popMessage());
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    abstract public function popMessage(): string;
+    abstract public function popMessage(): ?string;
 
     /**
      * @return int
