@@ -8,17 +8,18 @@ namespace App\Queue;
 
 
 use App\Jobs\AbstractJob;
+use App\Models\CronJob;
 use yii\base\Component;
 
 abstract class AbstractQueue extends Component
 {
     /**
-     * @param AbstractJob $job
+     * @param CronJob $cronJob
      * @return bool
      */
-    public function push(AbstractJob $job): bool
+    public function push(CronJob $cronJob): bool
     {
-        $message = serialize($job);
+        $message = serialize($cronJob);
         return $this->pushMessage($message);
     }
 
@@ -29,7 +30,7 @@ abstract class AbstractQueue extends Component
     abstract public function pushMessage(string $message): bool;
 
     /**
-     * @return AbstractJob|null
+     * @return CronJob|null
      */
     public function pop(): ?AbstractJob
     {
@@ -37,7 +38,7 @@ abstract class AbstractQueue extends Component
         if ($message == null) {
             return $message;
         }
-        return unserialize($this->popMessage());
+        return unserialize($message);
     }
 
     /**

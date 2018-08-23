@@ -33,8 +33,7 @@ class RedisQueue extends AbstractQueue
     }
 
     /**
-     * @param string $message
-     * @return bool
+     * @inheritdoc
      */
     public function pushMessage(string $message): bool
     {
@@ -43,9 +42,9 @@ class RedisQueue extends AbstractQueue
 
 
     /**
-     * @return string
+     * @inheritdoc
      */
-    public function popMessage(): string
+    public function popMessage(): ?string
     {
         return $this->redis->lpop($this->redisKey);
     }
